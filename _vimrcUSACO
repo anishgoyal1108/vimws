@@ -1,0 +1,70 @@
+set nocompatible              " be iMproved, required
+set autochdir
+source $VIMRUNTIME/mswin.vim
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
+set pythonthreehome=C:/Python310
+set pythonthreedll=C:/Python310/python310.dll
+map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+:set guioptions -=m 
+:set guioptions -=T
+colorscheme gruvbox
+filetype off                  " required
+au GUIEnter * simalt ~x
+set hls
+set is
+set cb=unnamed
+set gfn=Fixedsys:h20
+set ts=4
+set sw=4
+set si
+inoremap { {}<Left>
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {{ {
+inoremap {} {}
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+call plug#end()
+let g:instant_username = "anish1108"
+let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled = 1
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'github/copilot.vim'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+autocmd filetype cpp nnoremap <F5> :w <bar> !g++ -ulimit -Wall -Wno-unused-result -std=c++11   -O2   % -o %:r && %:r < inp.txt <CR>
+autocmd filetype cpp nnoremap <F6> :w <bar> !g++ -ulimit -Wall -Wno-unused-result -std=c++11   -O2   % -o %:r && %:r <CR>
+syntax on
+set nu
+set clipboard=unnamedplus
+set mouse=a
+set tabstop=2
+set autoindent
+set shiftwidth=2
+set softtabstop=2
+set smarttab
+set expandtab
+set smartcase
+set backspace=indent,eol,start
+set t_Co=256
+set background=dark
+let qq='TEST'
+inoremap {<CR> {<CR>}<Esc>ko<tab>
+inoremap [<CR> [<CR>]<Esc>ko<tab>
+inoremap (<CR> (<CR>)<Esc>ko<tab>
+autocmd filetype java nnoremap <F5> :w <bar> !javac % && java -enableassertions %:r <CR>
+autocmd BufNewFile  *.cpp 0r C:/Users/Anish/Documents/vimws/usacotemplate.cpp
+autocmd BufNewFile *.c 0r C:/Users/Anish/Documents/vimws/template.c 
+autocmd filetype python nnoremap <F5> :w <bar> !python3 % < ./inp.txt <CR>
+autocmd filetype perl nnoremap <F5> :w <bar> !perl % <CR>
+autocmd filetype go nnoremap <F5> :w <bar> !go build % && ./%:r <CR>
